@@ -1,5 +1,6 @@
-# Container name
-$containerName = "air-purifier-api"
+param (
+    [string]$containerName
+)
 
 # Function to check if a container is running
 function Is-ContainerRunning {
@@ -33,13 +34,3 @@ if (Is-ImageExists) {
     Write-Output "Removing the Docker image..."
     docker rmi $containerName
 }
-
-# Build the new Docker image
-Write-Output "Building the new Docker image..."
-docker build -t $containerName .
-
-# Run the new container
-Write-Output "Running the new container..."
-docker run -d -p 8000:8000 --name $containerName $containerName
-
-Write-Output "Deployment completed successfully."
