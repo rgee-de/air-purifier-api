@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import subprocess
@@ -7,7 +8,9 @@ import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
+from models.status import StatusModel
 from status_observe import run_subprocess
+
 
 load_dotenv()
 app = FastAPI()
@@ -19,13 +22,22 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Zwischenspeicher für den letzten JSON-Zustand
-latest_status = {}
+latest_status = StatusModel().dict()
 
 
-def update_status(status):
+def update_status(status: str):
     logger.info("Received status: %s", status)
     global latest_status
-    latest_status = status
+    if not status:
+        latest_status = StatusModel().dict()  # Reset to default values if no data
+    else:
+        try:
+            json_string = status.replace("'", '"')
+            json_string = json_string.replace('False', 'false').replace('True', 'true').replace('None', 'null')
+            status_dict = json.loads(json_string)
+            latest_status.update(status_dict)  # Update with the received data
+        except json.JSONDecodeError:
+            logger.error("Failed to decode status string: %s", status)
 
 
 def run_aioairctrl_set(sets):

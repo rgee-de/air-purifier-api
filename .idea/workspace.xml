@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a4a680a-3f0c-4b23-bad1-10518bf9f2e8" name="Changes" comment="Update Dockerfile and remove PowerShell script&#10;&#10;Updated Dockerfile to use a multi-stage build and added a health check. This enhances the efficiency of the build process and ensures proper operation of the container. Also removed the test.ps1 PowerShell script." />
+    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Added HOST_IP environment variable&#10;&#10;A new file .env was added, which contains the HOST_IP environment variable. This provides greater flexibility and adaptability by avoiding hardcoding the host IP, which may vary across different deployment environments.">
+      <change afterPath="$PROJECT_DIR$/models/status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,134 +19,58 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FastAPI main" />
-        <option value="FastAPI test_main" />
-        <option value="Dockerfile" />
         <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2ibFe7vlXuHcUx9i5iEwt0n486y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;FastAPI.air-purifier-api.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Projekte\dev\air-purifier-api\scripts" />
-      <recent name="C:\Projekte\dev\air-purifier-api" />
-      <recent name="C:\Projekte\dev\air-purifier-api\scripts-win" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="air-purifier-api" type="Python.FastAPI">
-      <option name="file" value="$PROJECT_DIR$/main.py" />
-      <module name="air-purifier-api" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}]]></component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="5a4a680a-3f0c-4b23-bad1-10518bf9f2e8" name="Changes" comment="" />
-      <created>1719751462154</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1719751462154</updated>
-      <workItem from="1719751464293" duration="170000" />
-      <workItem from="1719752351772" duration="12626000" />
-      <workItem from="1719813129996" duration="3312000" />
-    </task>
-    <task id="LOCAL-00001" summary="aktuell">
+    <task id="LOCAL-00001" summary="Update Dockerfile to a two-stage build and edit .gitignore&#10;&#10;The Dockerfile has been updated to a two-stage build process, firstly installing git and copying necessary files, and then ensuring these dependencies are available in the production image. This should make the construction process faster and the image lighter. Simultaneously, `.idea/` is no longer ignored, thus making all elements of JetBrains IDE configurations trackable.">
       <option name="closed" value="true" />
-      <created>1719754517259</created>
+      <created>1719822846225</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1719754517259</updated>
+      <updated>1719822846225</updated>
     </task>
-    <task id="LOCAL-00002" summary="Add container deployment and removal scripts&#10;&#10;The commit introduces two new scripts, `deploy-container.sh` and `remove-container.sh`, for container management. `deploy-container.sh` script builds and runs a new docker container. `remove-container.sh` script checks for, stops, and removes an existing docker container and its image if they exist. This aids in smoother application deployment and version upgrades. Minor workspace setting changes have also been committed.">
+    <task id="LOCAL-00002" summary="Refactor main codebase to use environment variables&#10;&#10;This update refactors the main codebase and the status_observe utility to fetch the host IP from environmental variables instead of hardcoding it. This enhances flexibility and adaptability when changing deployment environments. Also, it introduced some changes to the API like replacing GET requests with POST for managing the modes and operations of the air purifier.">
       <option name="closed" value="true" />
-      <created>1719813389771</created>
+      <created>1719846543265</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1719813389771</updated>
+      <updated>1719846543265</updated>
     </task>
-    <task id="LOCAL-00003" summary="Implement subprocess termination after timeout&#10;&#10;Added a new feature to the subprocess in `status_observe.py` to automatically terminate it after a preset timeout of 10 minutes. Also, updated the status callback and made minor adjustments in error handling and process restarting. Several changes were applied in `.idea/workspace.xml` to reflect on project level changes.">
+    <task id="LOCAL-00003" summary="Added HOST_IP environment variable&#10;&#10;A new file .env was added, which contains the HOST_IP environment variable. This provides greater flexibility and adaptability by avoiding hardcoding the host IP, which may vary across different deployment environments.">
       <option name="closed" value="true" />
-      <created>1719815130926</created>
+      <created>1719846570735</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1719815130926</updated>
+      <updated>1719846570735</updated>
     </task>
-    <task id="LOCAL-00004" summary="Update Dockerfile and remove PowerShell script&#10;&#10;Updated Dockerfile to use a multi-stage build and added a health check. This enhances the efficiency of the build process and ensures proper operation of the container. Also removed the test.ps1 PowerShell script.">
-      <option name="closed" value="true" />
-      <created>1719815705565</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1719815705565</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aktuell" />
-    <MESSAGE value="Add container deployment and removal scripts&#10;&#10;The commit introduces two new scripts, `deploy-container.sh` and `remove-container.sh`, for container management. `deploy-container.sh` script builds and runs a new docker container. `remove-container.sh` script checks for, stops, and removes an existing docker container and its image if they exist. This aids in smoother application deployment and version upgrades. Minor workspace setting changes have also been committed." />
-    <MESSAGE value="Implement subprocess termination after timeout&#10;&#10;Added a new feature to the subprocess in `status_observe.py` to automatically terminate it after a preset timeout of 10 minutes. Also, updated the status callback and made minor adjustments in error handling and process restarting. Several changes were applied in `.idea/workspace.xml` to reflect on project level changes." />
-    <MESSAGE value="Update Dockerfile and remove PowerShell script&#10;&#10;Updated Dockerfile to use a multi-stage build and added a health check. This enhances the efficiency of the build process and ensures proper operation of the container. Also removed the test.ps1 PowerShell script." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Dockerfile and remove PowerShell script&#10;&#10;Updated Dockerfile to use a multi-stage build and added a health check. This enhances the efficiency of the build process and ensures proper operation of the container. Also removed the test.ps1 PowerShell script." />
+    <MESSAGE value="Simplify Dockerfile and remove unnecessary build steps&#10;&#10;The Dockerfile was simplified by removing multi-staging and some unnecessary build steps. The change should make the image lighter and construction process faster. The health check from the Dockerfile was also removed, and an unnecessary PowerShell script was deleted." />
+    <MESSAGE value="Update Dockerfile to a two-stage build and edit .gitignore&#10;&#10;The Dockerfile has been updated to a two-stage build process, firstly installing git and copying necessary files, and then ensuring these dependencies are available in the production image. This should make the construction process faster and the image lighter. Simultaneously, `.idea/` is no longer ignored, thus making all elements of JetBrains IDE configurations trackable." />
+    <MESSAGE value="Refactor main codebase to use environment variables&#10;&#10;This update refactors the main codebase and the status_observe utility to fetch the host IP from environmental variables instead of hardcoding it. This enhances flexibility and adaptability when changing deployment environments. Also, it introduced some changes to the API like replacing GET requests with POST for managing the modes and operations of the air purifier." />
+    <MESSAGE value="Added HOST_IP environment variable&#10;&#10;A new file .env was added, which contains the HOST_IP environment variable. This provides greater flexibility and adaptability by avoiding hardcoding the host IP, which may vary across different deployment environments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HOST_IP environment variable&#10;&#10;A new file .env was added, which contains the HOST_IP environment variable. This provides greater flexibility and adaptability by avoiding hardcoding the host IP, which may vary across different deployment environments." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/air_purifier_api$air_purifier_api.coverage" NAME="air-purifier-api Coverage Results" MODIFIED="1719769775183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1719848296572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
