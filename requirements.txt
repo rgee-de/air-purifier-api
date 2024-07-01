@@ -1,3 +1,4 @@
 fastapi
 uvicorn
+python-dotenv
 git+https://github.com/Peter-J/aioairctrl.git

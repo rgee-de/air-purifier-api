@@ -1,6 +1,8 @@
 import subprocess
-import time
 import threading
+import time
+from dotenv import load_dotenv
+import os
 
 
 def terminate_process(process):
@@ -58,5 +60,6 @@ def status_callback_main(status):
 
 
 if __name__ == "__main__":
-    host_main = "192.168.20.45"
-    run_subprocess(host_main, status_callback_main)
+    load_dotenv()
+    air_purifier_host = os.getenv("HOST_IP")
+    run_subprocess(air_purifier_host, status_callback_main)
