@@ -1,17 +1,34 @@
 import subprocess
 import time
+import threading
 
-def run_subprocess(host, status_callback):
+
+def terminate_process(process):
+    if process.poll() is None:
+        process.terminate()
+        print("Process terminated due to timeout.")
+
+
+def start_timer(process, refresh_interval):
+    timer = threading.Timer(refresh_interval, terminate_process, [process])
+    timer.start()
+    return timer
+
+
+def run_subprocess(host, status_callback, refresh_interval=600):
     while True:
-        print("Es geht los")
+        # Create process
         process = subprocess.Popen(
-            ['aioairctrl', '--host', host, 'status-observe'],  # Befehl, der ausgeführt wird
-            stdout=subprocess.PIPE,  # Erfassung der Standardausgabe
-            stderr=subprocess.PIPE,  # Erfassung der Standardfehlerausgabe
-            text=True,  # Textmodus für die Ausgabe (keine Byte-Daten)
-            encoding='utf-8',  # Verwendung der UTF-8-Codierung für die Ausgabe
-            errors='replace'  # Ersetzen von nicht dekodierbaren Zeichen durch das Unicode-Ersatzzeichen
+            ['aioairctrl', '--host', host, 'status-observe'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding='utf-8',
+            errors='replace'  # Replacing non-decodable characters with the Unicode replacement character
         )
+
+        # Set up a timer to terminate the process after 10 minutes (default)
+        timer = start_timer(process, refresh_interval)
 
         while True:
             output = process.stdout.readline()  # Lesen der nächsten Zeile der Standardausgabe
@@ -20,20 +37,26 @@ def run_subprocess(host, status_callback):
             if output:
                 status_callback(output.strip())
 
-        # Ausgabe der Standardfehlerausgabe nach Beendigung des Prozesses
+        # Output of the standard error output after completion of the process
         stderr = process.communicate()[1]
         if stderr:
             print(stderr)
 
-        print("Process ended. Return code:", process.returncode)  # Ausgabe des Rückgabewerts des Prozesses
+        # Cancel the timer if the process ends before 5 minutes
+        timer.cancel()
 
-        # Kurze Pause, bevor der Prozess neu gestartet wird
+        # Output return code
+        print("Process ended. Return code:", process.returncode)
+
+        # Short sleep before the process is startet again
         time.sleep(1)
         print("Restarting process...")
 
-def status_callback(status):
+
+def status_callback_main(status):
     print("Received status:", status)
 
+
 if __name__ == "__main__":
-    host = "192.168.20.45"
-    run_subprocess(host, status_callback)
+    host_main = "192.168.20.45"
+    run_subprocess(host_main, status_callback_main)
