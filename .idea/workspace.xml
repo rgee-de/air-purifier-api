@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Implement StatusModel and update status handling logic&#10;&#10;The StatusModel has been implemented to standardize the status response structure. Additionally, the method to update the latest status has been modified to enhance its decoding and data handling ability. The adjustments made will better manage received status data and handle any decoding errors more efficiently.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,9 +96,25 @@
       <updated>1719851274378</updated>
       <workItem from="1719851280097" duration="542000" />
       <workItem from="1719858544988" duration="284000" />
-      <workItem from="1719859120758" duration="394000" />
+      <workItem from="1719859120758" duration="802000" />
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add CORS middleware to FastAPI application&#10;&#10;CORS middleware has been added to the FastAPI application to handle Cross-Origin Resource Sharing. Also, the requirements.txt file has been updated, removing specific versions for libraries and adding 'fastapi-cors' package.">
+      <option name="closed" value="true" />
+      <created>1719859767280</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719859767280</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access.">
+      <option name="closed" value="true" />
+      <created>1719859918137</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719859918137</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,7 +126,9 @@
     <MESSAGE value="Refactor main codebase to use environment variables&#10;&#10;This update refactors the main codebase and the status_observe utility to fetch the host IP from environmental variables instead of hardcoding it. This enhances flexibility and adaptability when changing deployment environments. Also, it introduced some changes to the API like replacing GET requests with POST for managing the modes and operations of the air purifier." />
     <MESSAGE value="Added HOST_IP environment variable&#10;&#10;A new file .env was added, which contains the HOST_IP environment variable. This provides greater flexibility and adaptability by avoiding hardcoding the host IP, which may vary across different deployment environments." />
     <MESSAGE value="Implement StatusModel and update status handling logic&#10;&#10;The StatusModel has been implemented to standardize the status response structure. Additionally, the method to update the latest status has been modified to enhance its decoding and data handling ability. The adjustments made will better manage received status data and handle any decoding errors more efficiently." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement StatusModel and update status handling logic&#10;&#10;The StatusModel has been implemented to standardize the status response structure. Additionally, the method to update the latest status has been modified to enhance its decoding and data handling ability. The adjustments made will better manage received status data and handle any decoding errors more efficiently." />
+    <MESSAGE value="Add CORS middleware to FastAPI application&#10;&#10;CORS middleware has been added to the FastAPI application to handle Cross-Origin Resource Sharing. Also, the requirements.txt file has been updated, removing specific versions for libraries and adding 'fastapi-cors' package." />
+    <MESSAGE value="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1719851327639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
