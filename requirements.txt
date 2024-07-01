@@ -1,5 +1,6 @@
-fastapi~=0.111.0
-uvicorn~=0.30.1
-pydantic~=2.7.4
-python-dotenv~=1.0.1
+fastapi
+fastapi-cors
+uvicorn
+pydantic
+python-dotenv
 git+https://github.com/Peter-J/aioairctrl.git

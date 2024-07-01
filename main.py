@@ -7,6 +7,7 @@ import threading
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from models.status import StatusModel
 from status_observe import run_subprocess
@@ -55,6 +56,20 @@ async def startup_event():
     thread.daemon = True
     thread.start()
 
+
+origins = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/status")
 def get_status():
