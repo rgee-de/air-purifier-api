@@ -1,9 +1,10 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+# Stage 1: Build
+FROM python:3.9-slim AS builder
 
 # Set the working directory
 WORKDIR /app
 
+# Install git
 RUN apt-get update && apt-get install -y git
 
 # Copy the requirements file into the image
@@ -14,6 +15,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
+
+# Stage 2: Production
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy only the necessary files from the build stage
+COPY --from=builder /app /app
+
+# Ensure dependencies are available in the production image
+COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Expose the port the app runs on
 EXPOSE 8000
