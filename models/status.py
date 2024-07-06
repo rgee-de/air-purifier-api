@@ -36,3 +36,4 @@ class StatusModel(BaseModel):
     fltsts0: int = 0
     fltsts1: int = 0
     fltsts2: int = 0
+    timestamp: str = ''

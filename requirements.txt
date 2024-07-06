@@ -1,6 +1,6 @@
 fastapi
-fastapi-cors
 uvicorn
 pydantic
 python-dotenv
+datetime
 git+https://github.com/Peter-J/aioairctrl.git

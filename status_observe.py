@@ -1,65 +1,119 @@
+import json
+import logging
+import os
+import signal
 import subprocess
+import sys
 import threading
 import time
+from datetime import datetime, timezone
+
 from dotenv import load_dotenv
-import os
+
+from models.status import StatusModel
+
+load_dotenv()
+
+# Get logging configuration from environment variables
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
+
+logging.basicConfig(level=LOG_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
-def terminate_process(process):
-    if process.poll() is None:
-        process.terminate()
-        print("Process terminated due to timeout.")
+class StatusObserver:
+    def __init__(self, host, status_callback, refresh_interval=300):
+        self.host = host
+        self.status_callback = status_callback
+        self.refresh_interval = refresh_interval
+        self.process = None
+        self.timer = None
+        signal.signal(signal.SIGINT, self.signal_handler)
 
+    def terminate_process(self):
+        """Terminate the given process if it is still running."""
+        if self.process.poll() is None:
+            self.process.terminate()
+            try:
+                self.process.wait(timeout=10)
+                logger.info("Process terminated due to timeout.")
+            except subprocess.TimeoutExpired:
+                self.process.kill()
+                logger.warning("Process killed after failing to terminate.")
 
-def start_timer(process, refresh_interval):
-    timer = threading.Timer(refresh_interval, terminate_process, [process])
-    timer.start()
-    return timer
+    def start_timer(self):
+        """Start a timer to terminate the process after the specified interval."""
+        if self.timer:
+            self.timer.cancel()
+        self.timer = threading.Timer(self.refresh_interval, self.terminate_process)
+        self.timer.start()
 
-
-def run_subprocess(host, status_callback, refresh_interval=600):
-    while True:
-        # Create process
-        process = subprocess.Popen(
-            ['aioairctrl', '--host', host, 'status-observe'],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            encoding='utf-8',
-            errors='replace'  # Replacing non-decodable characters with the Unicode replacement character
-        )
-
-        # Set up a timer to terminate the process after 10 minutes (default)
-        timer = start_timer(process, refresh_interval)
-
+    def read_process_output(self):
+        """Read the output from the process and pass it to the callback."""
         while True:
-            output = process.stdout.readline()  # Lesen der nächsten Zeile der Standardausgabe
-            if output == '' and process.poll() is not None:
-                break  # Beenden der Schleife, wenn der Prozess beendet ist
+            output = self.process.stdout.readline()
+            if output == '' and self.process.poll() is not None:
+                break
             if output:
-                status_callback(output.strip())
+                self.status_callback(self.transform_output_string_to_status(output.strip()))
 
-        # Output of the standard error output after completion of the process
-        stderr = process.communicate()[1]
+    @staticmethod
+    def transform_output_string_to_status(status):
+        """Map the string into a status object and extend it with current timestamp."""
+        latest_status = StatusModel().dict()
+        try:
+            status = status.replace("'", '"').replace('False', 'false').replace('True', 'true').replace('None', 'null')
+            status_dict = json.loads(status)
+            latest_status.update(status_dict)
+            latest_status['timestamp'] = datetime.now(timezone.utc).isoformat()
+        except json.JSONDecodeError:
+            logger.error("Failed to decode status string: %s", status)
+        return latest_status
+
+    def handle_process_end(self):
+        """Handle the end of the process, including timer cancellation and error output."""
+        stderr = self.process.communicate()[1]
         if stderr:
-            print(stderr)
+            logger.error(stderr)
 
-        # Cancel the timer if the process ends before 5 minutes
-        timer.cancel()
+        self.timer.cancel()
+        logger.info("Process ended. Return code: %s", self.process.returncode)
 
-        # Output return code
-        print("Process ended. Return code:", process.returncode)
+    def run(self):
+        """Run the subprocess to observe status and restart it periodically."""
+        logger.info("Init start process.")
+        while True:
+            self.process = subprocess.Popen(
+                ['aioairctrl', '--host', self.host, 'status-observe'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding='utf-8',
+                errors='replace'  # Replace non-decodable characters with the Unicode replacement character
+            )
 
-        # Short sleep before the process is startet again
-        time.sleep(1)
-        print("Restarting process...")
+            self.start_timer()
+            self.read_process_output()
+            self.handle_process_end()
+
+            time.sleep(1)  # Short sleep before restarting the process
+            logger.info("Restarting process...")
+
+    def signal_handler(self, _sig, _frame):
+        logger.info("Interrupt received, stopping...")
+        if self.process:
+            self.terminate_process()
+        if self.timer:
+            self.timer.cancel()
+        sys.exit(0)
 
 
-def status_callback_main(status):
-    print("Received status:", status)
+def main_status_callback(status):
+    """Callback function to handle status updates."""
+    logger.info("Received status: %s", status)
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    air_purifier_host = os.getenv("HOST_IP")
-    run_subprocess(air_purifier_host, status_callback_main)
+    main_host = os.getenv("HOST_IP")
+    observer = StatusObserver(main_host, main_status_callback)
+    observer.run()
