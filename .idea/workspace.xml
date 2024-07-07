@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Refactor status observer for enhanced functionality and readability&#10;&#10;The changes include an extensive redesign of the script 'status_observe.py', applying a class structure and implementing logging to enhance code readability and functionality. Status information now incorporates a timestamp for greater accuracy. Adjustments were also made to 'requirements.txt' and the .env file, accounting for the addition of the datetime module and the inclusion of a configurable log level.">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Add CORS configuration and dynamic WebSocket URL&#10;&#10;The commit includes the addition of CORS middleware configuration and dynamic WebSocket URL to the FastAPI application. These changes can be found in 'app/config.py', '.env', 'README.md' and 'app/main.py'. The WebSocket URL in the WebSocket example has also been updated to be dynamic, improving deployment flexibility.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/websocket_example.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/websocket_example.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -93,6 +91,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="HTTP Request.test_main | #1" />
+      <item itemvalue="HTTP Request.test_main | #2" />
+      <item itemvalue="Python.main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
@@ -152,7 +155,7 @@
       <workItem from="1719858544988" duration="284000" />
       <workItem from="1719859120758" duration="4939000" />
       <workItem from="1720213145874" duration="3574000" />
-      <workItem from="1720216965539" duration="22414000" />
+      <workItem from="1720216965539" duration="24942000" />
     </task>
     <task id="LOCAL-00005" summary="Add CORS middleware to FastAPI application&#10;&#10;CORS middleware has been added to the FastAPI application to handle Cross-Origin Resource Sharing. Also, the requirements.txt file has been updated, removing specific versions for libraries and adding 'fastapi-cors' package.">
       <option name="closed" value="true" />
@@ -194,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720346310362</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add CORS configuration and dynamic WebSocket URL&#10;&#10;The commit includes the addition of CORS middleware configuration and dynamic WebSocket URL to the FastAPI application. These changes can be found in 'app/config.py', '.env', 'README.md' and 'app/main.py'. The WebSocket URL in the WebSocket example has also been updated to be dynamic, improving deployment flexibility.">
+      <option name="closed" value="true" />
+      <created>1720348662320</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1720348662320</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,11 +222,12 @@
     <MESSAGE value="Refactor CORS middleware to accept a specific origins list&#10;&#10;The CORS middleware &quot;allow_origins&quot; setting is no longer a wildcard (&quot;*&quot;) but instead accepts an 'origins' list. This change increases security and control by explicitly defining which origins are allowed access." />
     <MESSAGE value="Implement more comprehensive status observation&#10;&#10;This revision contains a major overhaul to 'status_observe.py', redesigning the system to use logging and a class structure for better readability and functionality. Status information now includes a timestamp for added accuracy. 'requirements.txt' and the .env file have also been adjusted due to the addition of the datetime module and a mechanism for setting log level." />
     <MESSAGE value="Refactor status observer for enhanced functionality and readability&#10;&#10;The changes include an extensive redesign of the script 'status_observe.py', applying a class structure and implementing logging to enhance code readability and functionality. Status information now incorporates a timestamp for greater accuracy. Adjustments were also made to 'requirements.txt' and the .env file, accounting for the addition of the datetime module and the inclusion of a configurable log level." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor status observer for enhanced functionality and readability&#10;&#10;The changes include an extensive redesign of the script 'status_observe.py', applying a class structure and implementing logging to enhance code readability and functionality. Status information now incorporates a timestamp for greater accuracy. Adjustments were also made to 'requirements.txt' and the .env file, accounting for the addition of the datetime module and the inclusion of a configurable log level." />
+    <MESSAGE value="Add CORS configuration and dynamic WebSocket URL&#10;&#10;The commit includes the addition of CORS middleware configuration and dynamic WebSocket URL to the FastAPI application. These changes can be found in 'app/config.py', '.env', 'README.md' and 'app/main.py'. The WebSocket URL in the WebSocket example has also been updated to be dynamic, improving deployment flexibility." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add CORS configuration and dynamic WebSocket URL&#10;&#10;The commit includes the addition of CORS middleware configuration and dynamic WebSocket URL to the FastAPI application. These changes can be found in 'app/config.py', '.env', 'README.md' and 'app/main.py'. The WebSocket URL in the WebSocket example has also been updated to be dynamic, improving deployment flexibility." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/air_purifier_api$status_observe.coverage" NAME="status_observe Coverage Results" MODIFIED="1720288987306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1720348366099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1720350654839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/air_purifier_api$websocket.coverage" NAME="websocket Coverage Results" MODIFIED="1720340990797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

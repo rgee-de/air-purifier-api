@@ -3,4 +3,5 @@ uvicorn
 pydantic
 python-dotenv
 datetime
+jinja2
 git+https://github.com/Peter-J/aioairctrl.git
