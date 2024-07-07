@@ -15,7 +15,7 @@
 <body>
 <div id='msg'>...waiting</div>
 <script>
-    const ws = new WebSocket("ws://localhost:8000/ws");
+    const ws = new WebSocket("{{ websocket_url }}");
     ws.onmessage = function (event) {
         const message = document.getElementById('msg');
         try {

@@ -38,6 +38,8 @@ Change the .env file in the root directory
 
 - HOST_IP: The IP address of your air purifier on the network.
 - LOG_LEVEL: The logging level (ERROR or INFO).
+- ORIGINS: CORS Origins.
+- WEBSOCKET_URL: URL where the server runs.
 
 ### Running the Docker Container
 
