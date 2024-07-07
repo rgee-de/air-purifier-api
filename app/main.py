@@ -40,15 +40,14 @@ app.add_middleware(
 
 templates = Jinja2Templates(directory="app/templates")
 
+background_tasks_loop = asyncio.get_event_loop()
+
 
 def update_status(purifier_status: dict):
     latest_status.update(purifier_status)
     logger.info("Received status: %s", purifier_status)
 
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(websocket_manager.broadcast(latest_status))
-    loop.close()
+    asyncio.run_coroutine_threadsafe(websocket_manager.broadcast(latest_status), background_tasks_loop)
 
 
 @app.websocket("/ws")
