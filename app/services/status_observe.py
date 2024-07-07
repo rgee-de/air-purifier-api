@@ -1,6 +1,5 @@
 import json
 import logging
-import os
 import signal
 import subprocess
 import sys
@@ -10,12 +9,10 @@ from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 
+from app.config import LOG_LEVEL, HOST_IP
 from models.status import StatusModel
 
 load_dotenv()
-
-# Get logging configuration from environment variables
-LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
 
 logging.basicConfig(level=LOG_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -114,6 +111,5 @@ def main_status_callback(status):
 
 
 if __name__ == "__main__":
-    main_host = os.getenv("HOST_IP")
-    observer = StatusObserver(main_host, main_status_callback)
+    observer = StatusObserver(HOST_IP, main_status_callback)
     observer.run()

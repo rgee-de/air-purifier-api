@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
+    <list default="true" id="9a90a512-769b-4c1d-898b-c46ba4b4a40c" name="Changes" comment="Implement more comprehensive status observation&#10;&#10;This revision contains a major overhaul to 'status_observe.py', redesigning the system to use logging and a class structure for better readability and functionality. Status information now includes a timestamp for added accuracy. 'requirements.txt' and the .env file have also been adjusted due to the addition of the datetime module and a mechanism for setting log level.">
+      <change afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/control.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/websocket_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/websocket_example.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/globals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/deploy-container.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deploy-container.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/remove-container.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/remove-container.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/status_observe.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/status_observe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,21 +49,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.test_main | #1.executor": "Run",
+    "HTTP Request.test_main | #2.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.status_observe.executor": "Debug",
+    "Python.websocket.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projekte\dev\air-purifier-api\app\services" />
+      <recent name="C:\Projekte\dev\air-purifier-api\app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="HTTP Request.test_main | #2">
+    <configuration name="test_main | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test_main | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.test_main | #2" />
+        <item itemvalue="HTTP Request.test_main | #1" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -96,7 +137,9 @@
       <updated>1719851274378</updated>
       <workItem from="1719851280097" duration="542000" />
       <workItem from="1719858544988" duration="284000" />
-      <workItem from="1719859120758" duration="802000" />
+      <workItem from="1719859120758" duration="4939000" />
+      <workItem from="1720213145874" duration="3574000" />
+      <workItem from="1720216965539" duration="20619000" />
     </task>
     <task id="LOCAL-00005" summary="Add CORS middleware to FastAPI application&#10;&#10;CORS middleware has been added to the FastAPI application to handle Cross-Origin Resource Sharing. Also, the requirements.txt file has been updated, removing specific versions for libraries and adding 'fastapi-cors' package.">
       <option name="closed" value="true" />
@@ -114,7 +157,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719859918137</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactor CORS middleware to accept a specific origins list&#10;&#10;The CORS middleware &quot;allow_origins&quot; setting is no longer a wildcard (&quot;*&quot;) but instead accepts an 'origins' list. This change increases security and control by explicitly defining which origins are allowed access.">
+      <option name="closed" value="true" />
+      <created>1719860502857</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719860502857</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implement more comprehensive status observation&#10;&#10;This revision contains a major overhaul to 'status_observe.py', redesigning the system to use logging and a class structure for better readability and functionality. Status information now includes a timestamp for added accuracy. 'requirements.txt' and the .env file have also been adjusted due to the addition of the datetime module and a mechanism for setting log level.">
+      <option name="closed" value="true" />
+      <created>1720267044288</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1720267044288</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,9 +187,13 @@
     <MESSAGE value="Implement StatusModel and update status handling logic&#10;&#10;The StatusModel has been implemented to standardize the status response structure. Additionally, the method to update the latest status has been modified to enhance its decoding and data handling ability. The adjustments made will better manage received status data and handle any decoding errors more efficiently." />
     <MESSAGE value="Add CORS middleware to FastAPI application&#10;&#10;CORS middleware has been added to the FastAPI application to handle Cross-Origin Resource Sharing. Also, the requirements.txt file has been updated, removing specific versions for libraries and adding 'fastapi-cors' package." />
     <MESSAGE value="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated CORS middleware settings in FastAPI application&#10;&#10;The &quot;allow_origins&quot; setting in the CORS middleware command has been updated from a wildcard (&quot;*&quot;) to a variable, 'origins'. This will allow for better security and control over which origins are permitted access." />
+    <MESSAGE value="Refactor CORS middleware to accept a specific origins list&#10;&#10;The CORS middleware &quot;allow_origins&quot; setting is no longer a wildcard (&quot;*&quot;) but instead accepts an 'origins' list. This change increases security and control by explicitly defining which origins are allowed access." />
+    <MESSAGE value="Implement more comprehensive status observation&#10;&#10;This revision contains a major overhaul to 'status_observe.py', redesigning the system to use logging and a class structure for better readability and functionality. Status information now includes a timestamp for added accuracy. 'requirements.txt' and the .env file have also been adjusted due to the addition of the datetime module and a mechanism for setting log level." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement more comprehensive status observation&#10;&#10;This revision contains a major overhaul to 'status_observe.py', redesigning the system to use logging and a class structure for better readability and functionality. Status information now includes a timestamp for added accuracy. 'requirements.txt' and the .env file have also been adjusted due to the addition of the datetime module and a mechanism for setting log level." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1719851327639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/air_purifier_api$status_observe.coverage" NAME="status_observe Coverage Results" MODIFIED="1720288987306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/air_purifier_api$main.coverage" NAME="main Coverage Results" MODIFIED="1720343656235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/air_purifier_api$websocket.coverage" NAME="websocket Coverage Results" MODIFIED="1720340990797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

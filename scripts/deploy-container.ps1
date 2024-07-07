@@ -1,5 +1,5 @@
 param (
-    [string]$containerName
+    [string]$containerName = "air-purifier-api"
 )
 
 # Path to the remove script
