@@ -1,7 +1,7 @@
-fastapi
-uvicorn
-pydantic
-python-dotenv
-datetime
-jinja2
-git+https://github.com/Peter-J/aioairctrl.git
+fastapi==0.124.2
+uvicorn==0.38.0
+pydantic==2.12.5
+python-dotenv==1.2.1
+DateTime==6.0
+Jinja2==3.1.6
+git+https://github.com/Peter-J/aioairctrl.git@v0.2.1

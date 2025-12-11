@@ -1,0 +1,13 @@
+services:
+  air-purifier-api:
+    image: rgee/air-purifier-api:arm64-latest
+    container_name: air-purifier-api
+    restart: unless-stopped
+    pull_policy: always
+    ports:
+      - "8000:8000"
+    environment:
+      HOST_IP: ${HOST_IP}
+      LOG_LEVEL: ${LOG_LEVEL}
+      ORIGINS: ${ORIGINS}
+      WEBSOCKET_URL: ${WEBSOCKET_URL}

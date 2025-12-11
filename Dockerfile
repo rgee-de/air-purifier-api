@@ -1,33 +1,24 @@
 # Stage 1: Build
-FROM python:3.9-slim AS builder
+FROM python:3.12-slim
 
 # Set the working directory
 WORKDIR /app
 
 # Install git
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the image
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies safely
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the actual application
 COPY . .
-
-# Stage 2: Production
-FROM python:3.9-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Copy only the necessary files from the build stage
-COPY --from=builder /app /app
-
-# Ensure dependencies are available in the production image
-COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Expose the port the app runs on
 EXPOSE 8000
