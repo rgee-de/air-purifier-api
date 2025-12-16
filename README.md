@@ -9,9 +9,6 @@ easy deployment.
 - [Requirements](#requirements)
 - [Setup and Configuration](#setup-and-configuration)
     - [Environment Variables](#environment-variables)
-    - [Running the Docker Container](#running-the-docker-container)
-        - [PowerShell Script](#powershell-script)
-        - [Bash Script](#bash-script)
     - [Running the Application](#running-the-application)
 - [Status Observer](#status-observer)
 - [API Endpoints](#api-endpoints)
@@ -41,27 +38,6 @@ Change the .env file in the root directory
 - ORIGINS: CORS Origins.
 - WEBSOCKET_URL: URL where the server runs.
 
-### Running the Docker Container
-
-To deploy the backend in a Docker container, use the provided scripts.
-
-#### PowerShell Script
-
-Run the following command in PowerShell to deploy the container:
-
-```powershell
-cd scripts
-.\deploy-container.ps1
-```
-
-#### Bash Script
-
-Run the following command in a Unix-like terminal to deploy the container:
-
-```shell
-cd scripts
-.\deploy-container.sh
-```
 
 ### Running the Application
 
