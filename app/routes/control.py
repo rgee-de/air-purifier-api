@@ -6,6 +6,9 @@ from app.config import HOST_IP
 
 router = APIRouter()
 
+UIL_OFF = "uil=0"
+AQIL_OFF = "aqil=0"
+COMMON_ARGS = [UIL_OFF, AQIL_OFF]
 
 def run_aioairctrl_set(sets):
     command = ['aioairctrl', '--host', HOST_IP, 'set'] + sets
@@ -18,25 +21,25 @@ def run_aioairctrl_set(sets):
 
 @router.post("/mode_p")
 def mode_p():
-    run_aioairctrl_set(['mode=P', 'uil=0', 'aqil=0'])
+    run_aioairctrl_set(['mode=P', *COMMON_ARGS])
     return {}
 
 
 @router.post("/mode_a")
 def mode_a():
-    run_aioairctrl_set(['mode=A', 'uil=0', 'aqil=0'])
+    run_aioairctrl_set(['mode=A', *COMMON_ARGS])
     return {}
 
 
 @router.post("/turbo")
 def turbo():
-    run_aioairctrl_set(['om=t', 'uil=0', 'aqil=0'])
+    run_aioairctrl_set(['om=t', *COMMON_ARGS])
     return {}
 
 
 @router.post("/sleep")
 def sleep():
-    run_aioairctrl_set(['om=s', 'uil=0', 'aqil=0'])
+    run_aioairctrl_set(['om=s', *COMMON_ARGS])
     return {}
 
 
